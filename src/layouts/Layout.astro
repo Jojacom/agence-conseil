@@ -3,6 +3,7 @@ import Footer from "../components/elements/Footer.astro";
 import Navbar from "../components/elements/Navbar.astro";
 import WhatsAppButton from "../components/elements/WhatsAppButton.astro";
 import { site } from "../utils/site";
+import "../styles/global.css";
 
 export interface Props {
   title: string;
@@ -84,7 +85,7 @@ const jsonLd = {
     </script>
   </head>
   <body class="bg-body overflow-x-hidden">
-    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-full focus:bg-heading-1 focus:text-body">
+    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:rounded-full focus:bg-heading-1 focus:text-body">
       Aller au contenu
     </a>
     <Navbar />
@@ -119,7 +120,7 @@ const jsonLd = {
         toggleMenu.setAttribute("aria-expanded", String(open));
         toggleMenu.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
         overlayNav.setAttribute("data-is-visible", String(open));
-        document.body.classList.toggle("!overflow-y-hidden", open);
+        document.body.classList.toggle("overflow-y-hidden!", open);
         navbar.style.height = open ? `${navbar.scrollHeight}px` : "";
         // Menu fermé sur mobile : liens retirés de la tabulation
         if (desktop.matches) navbar.removeAttribute("inert");
