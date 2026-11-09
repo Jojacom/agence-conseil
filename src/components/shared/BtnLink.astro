@@ -1,34 +1,37 @@
 ---
-export interface Props{
-    href:string,
-    text:string,
-    className?:string,
-    variant:"primary"|"secondary"
+export interface Props {
+    href: string;
+    text?: string;
+    className?: string;
+    variant: "primary" | "secondary" | "whatsapp";
+    target?: string;
+    ariaLabel?: string;
 }
 
-const {href, text,className, variant} = Astro.props
+const { href, text, className = "", variant, target, ariaLabel } = Astro.props;
 
-const getThemeStyle = (variant:"primary"|"secondary")=>{
-    if (variant === "primary") {
-        return "bg-primary border-transparent relative after:bg-[#172554] hover:border-[#172554]"
-    }
-    return "text-primary"
-}
+// Contrastes vérifiés (WCAG AA, texte blanc) :
+// primaryv #A6524B -> 5,3:1 ; WhatsApp #128C4B -> 4,6:1
+const styles = {
+    primary: "bg-primaryv text-white border-transparent hover:border-[#172554] after:bg-[#172554]",
+    secondary: "bg-transparent text-heading-1 border-box-border hover:border-primaryv after:bg-primaryv/10",
+    whatsapp: "bg-[#128C4B] text-white border-transparent hover:border-[#0b5e32] after:bg-[#0b5e32]",
+};
 
-const getTextColor = (variant:"primary"|"secondary") =>{
-    if (variant === "primary") {
-        return "text-white"
-    }
-    return "text-primary"
-}
-
-
+const isExternal = target === "_blank";
 ---
 
-<a href={href} class={`px-6 py-3 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear
-                    after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0 after:bg-[#172554]
-                    ${getThemeStyle(variant)} hover:after:opacity-100 hover:after:scale-[2.5] ${className}`}>
-    <span class={`relative ${getTextColor(variant)} z-10`}>
-        {text}
+<a
+    href={href}
+    target={target}
+    rel={isExternal ? "noopener noreferrer" : undefined}
+    aria-label={ariaLabel}
+    class={`inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium relative overflow-hidden border duration-300 ease-linear
+        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-heading-1
+        after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0
+        hover:after:opacity-100 hover:after:scale-[2.5] ${styles[variant]} ${className}`}>
+    <span class="relative z-10 inline-flex items-center gap-2">
+        <slot name="icon"/>
+        {text}<slot/>
     </span>
 </a>

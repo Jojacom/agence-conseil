@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jojacom.online/sitemap.xml

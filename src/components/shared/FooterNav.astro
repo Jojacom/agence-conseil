@@ -10,19 +10,17 @@ export interface Props{
 const {title, navItems} = Astro.props
 ---
 
-<nav class="space-y-6">
-    <h2 class="capitalze font-semibold text-heading-1 text-xl">
+<nav aria-label={title} class="space-y-6">
+    <h2 class="font-semibold text-heading-1 text-xl">
         {title}
     </h2>
     <ul class="space-y-3 font-medium md:text-lg text-heading-3">
         {navItems.map((navItem)=>(
             <li>
-                <a href={navItem.itemLink} class="transition hover:text-primary">
+                <a href={navItem.itemLink} class="transition hover:text-primaryv dark:hover:text-primary">
                     {navItem.itemText}
                 </a>
             </li>
-        ))
-
-        }
+        ))}
     </ul>
 </nav>
