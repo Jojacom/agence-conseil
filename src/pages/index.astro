@@ -2,19 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
 import Services from '../components/sections/Services.astro';
+import Method from '../components/sections/Method.astro';
 import AboutUs from '../components/sections/AboutUs.astro';
-import Features from '../components/sections/Features.astro';
-import CTA from '../components/sections/CTA.astro';
-import Brands from '../components/sections/Brands.astro';
+import Contact from '../components/sections/Contact.astro';
 ---
 
-<Layout title="Bienvenue à JOJACOM">
-	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
+<Layout title="JOJACOM – Agence de communication digitale à Dakar, Sénégal">
+	<main id="contenu" class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
 		<Hero/>
-		<Brands/>
 		<Services/>
+		<Method/>
 		<AboutUs/>
-		<Features/>
-		<CTA/>
+		<Contact/>
 	</main>
 </Layout>

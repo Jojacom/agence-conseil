@@ -1,53 +1,29 @@
-<h1>AgenceX Landing page</h1>
+# Site JOJACOM
 
-A simple landing page for a digital agency
+Site vitrine de **JOJACOM SARL**, agence de communication digitale à Dakar (Sénégal) : <https://jojacom.online>
 
-![AgenceX light Theme](./screens/demoLight.webp)
-![AgenceX Dark Theme](./screens/demoDark.webp)
+## Outils
+- [Astro](https://astro.build) 7
+- [Tailwind CSS](https://tailwindcss.com) 4 (plugin Vite `@tailwindcss/vite`)
+- Node.js 22.23.4 ou plus récent
 
+## Modifier le contenu
+| Quoi | Où |
+| :-- | :-- |
+| Téléphone, e-mail, adresse, WhatsApp, réseaux sociaux | `src/utils/site.ts` |
+| Liste des services et étapes de la méthode | `src/utils/data.ts` |
+| Sections de la page d'accueil | `src/components/sections/` |
+| Titre, description et balises SEO | `src/layouts/Layout.astro` |
+| Couleurs de la charte et styles globaux | `src/styles/global.css` |
 
-## Tools
-- TailwindCSS v3.3
-- AstroJs v3
+Le formulaire de contact n'enregistre rien côté serveur : il prépare le message et l'ouvre dans WhatsApp ou dans la messagerie du visiteur.
 
+## Commandes
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   ├── images/
-│   ├── logos/*
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   ├── blocks/*
-│   │   ├── cards/*
-│   │   ├── elements/*
-│   │   ├── sections/*
-│   │   ├── shared/*
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-├── package.json
-└── tailwind.config.cjs
-```
-
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:4321`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
-
-
+| Commande | Action |
+| :-- | :-- |
+| `npm install` | Installe les dépendances |
+| `npm run dev` | Lance le serveur local sur `localhost:4321` |
+| `npm run build` | Génère le site dans `./dist/` |
+| `npm run preview` | Prévisualise le site généré |
+| `npm run check` | Vérifie les types et les erreurs des fichiers Astro |
