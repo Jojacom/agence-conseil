@@ -12,9 +12,12 @@ Site vitrine de **JOJACOM SARL**, agence de communication digitale à Dakar (Sé
 | :-- | :-- |
 | Téléphone, e-mail, adresse, WhatsApp, réseaux sociaux | `src/utils/site.ts` |
 | Liste des services et étapes de la méthode | `src/utils/data.ts` |
+| Clients, résultats, témoignages, équipe (section « Ils nous font confiance ») | `src/utils/proof.ts` + images dans `public/preuves/` |
 | Sections de la page d'accueil | `src/components/sections/` |
 | Titre, description et balises SEO | `src/layouts/Layout.astro` |
 | Couleurs de la charte et styles globaux | `src/styles/global.css` |
+
+La section « Ils nous font confiance » et les photos de l'équipe ne s'affichent que lorsque `src/utils/proof.ts` contient des données réelles (avec l'accord des clients). Tant que ses listes sont vides, la page affiche Mission et Vision à la place.
 
 Le formulaire de contact n'enregistre rien côté serveur : il prépare le message et l'ouvre dans WhatsApp ou dans la messagerie du visiteur.
 

@@ -1,0 +1,73 @@
+---
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import { cases, clients, testimonials } from "../../utils/proof";
+
+// La section n'est rendue que si au moins une preuve réelle est renseignée.
+const hasProof = clients.length > 0 || cases.length > 0 || testimonials.length > 0;
+---
+
+{hasProof && (
+    <section id="references" aria-labelledby="references-titre">
+        <Container className="space-y-14">
+            <div class="max-w-2xl">
+                <Title id="references-titre">Ils nous font confiance</Title>
+                <Paragraph className="mt-4">
+                    Des entreprises sénégalaises qui ont transformé leur présence en ligne avec JOJACOM.
+                </Paragraph>
+            </div>
+
+            {clients.length > 0 && (
+                <ul class="flex flex-wrap items-center gap-x-12 gap-y-8" aria-label="Clients">
+                    {clients.map((c) => (
+                        <li>
+                            {c.url ? (
+                                <a href={c.url} target="_blank" rel="noopener noreferrer" class="block">
+                                    <img src={c.logo} alt={c.name} class="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" />
+                                    <span class="sr-only"> (nouvel onglet)</span>
+                                </a>
+                            ) : (
+                                <img src={c.logo} alt={c.name} class="h-10 sm:h-12 w-auto" loading="lazy" decoding="async" />
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {cases.length > 0 && (
+                <ul class="grid md:grid-cols-3 gap-x-10 gap-y-10">
+                    {cases.map((c) => (
+                        <li class="border-t-2 border-primaryv dark:border-primary pt-5">
+                            <p class="text-4xl md:text-5xl font-bold text-heading-1">{c.result}</p>
+                            <p class="mt-1 text-sm font-semibold text-primaryv dark:text-primary">{c.period}</p>
+                            <h3 class="mt-4 text-lg font-semibold text-heading-1">{c.client}</h3>
+                            <p class="mt-2 md:text-lg text-heading-3">{c.summary}</p>
+                        </li>
+                    ))}
+                </ul>
+            )}
+
+            {testimonials.length > 0 && (
+                <ul class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                    {testimonials.map((t) => (
+                        <li>
+                            <figure>
+                                <blockquote class="text-lg md:text-xl text-heading-2">
+                                    <p>« {t.quote} »</p>
+                                </blockquote>
+                                <figcaption class="mt-5 flex items-center gap-4">
+                                    {t.photo && <img src={t.photo} alt="" width="48" height="48" class="w-12 h-12 rounded-full object-cover" loading="lazy" decoding="async" />}
+                                    <span>
+                                        <span class="block font-semibold text-heading-1">{t.name}</span>
+                                        <span class="block text-sm text-heading-3">{t.role}</span>
+                                    </span>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </Container>
+    </section>
+)}
