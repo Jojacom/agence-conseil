@@ -1,0 +1,20 @@
+---
+// Frise géométrique inspirée des motifs wax, aux couleurs de la charte.
+// Élément purement décoratif : ignoré par les lecteurs d'écran.
+export interface Props {
+    className?: string;
+}
+const { className = "" } = Astro.props;
+
+const tile = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="16" viewBox="0 0 64 16">
+<rect width="64" height="16" fill="#172554"/>
+<path d="M0 16 8 2l8 14z" fill="#BF793B"/>
+<path d="m24 2 6 6-6 6-6-6z" fill="#F28729"/>
+<path d="M32 0h16l-8 14z" fill="#A6524B"/>
+<path d="m56 4 4 4-4 4-4-4z" fill="#FCDC58"/>
+<rect width="64" height="1.5" fill="#0F7A41"/>
+<rect y="14.5" width="64" height="1.5" fill="#0F7A41"/>
+</svg>`;
+const bg = `url("data:image/svg+xml,${encodeURIComponent(tile)}")`;
+---
+<div aria-hidden="true" class={`h-4 w-full bg-repeat-x ${className}`} style={`background-image:${bg};background-size:64px 16px`}></div>

@@ -11,11 +11,11 @@ export interface Props {
 const { href, text, className = "", variant, target, ariaLabel } = Astro.props;
 
 // Contrastes vérifiés (WCAG AA, texte blanc) :
-// primaryv #A6524B -> 5,3:1 ; WhatsApp #128C4B -> 4,6:1
+// primaryv #A6524B -> 5,3:1 ; WhatsApp #0F7A41 -> 5,4:1
 const styles = {
     primary: "bg-primaryv text-white border-transparent hover:border-[#172554] after:bg-[#172554]",
     secondary: "bg-transparent text-heading-1 border-box-border hover:border-primaryv after:bg-primaryv/10",
-    whatsapp: "bg-[#128C4B] text-white border-transparent hover:border-[#0b5e32] after:bg-[#0b5e32]",
+    whatsapp: "bg-[#0F7A41] text-white border-transparent hover:border-[#0b5e32] after:bg-[#0b5e32]",
 };
 
 const isExternal = target === "_blank";
