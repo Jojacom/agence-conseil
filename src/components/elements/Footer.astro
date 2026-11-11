@@ -1,7 +1,7 @@
 ---
 import GroupFooterNav from "../blocks/GroupFooterNav.astro";
 import Container from "../shared/Container.astro";
-import Decor from "../shared/Decor.astro";
+import WaxBand from "../shared/WaxBand.astro";
 import FooterNav from "../shared/FooterNav.astro";
 import svgLogo from '../../images/logo.svg';
 import { services } from "../../utils/data";
@@ -40,8 +40,8 @@ const socials = [
 
 const year = new Date().getFullYear();
 ---
-<footer class="relative bg-linear-to-tr from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 pt-10 rounded-t-3xl overflow-hidden">
-    <Decor />
+<footer class="relative bg-linear-to-tr from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 pt-14 rounded-t-3xl overflow-hidden">
+    <WaxBand className="absolute inset-x-0 top-0" />
     <Container className="pb-8 relative">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:items-stretch gap-8 relative">
             <div class="sm:col-span-2 lg:col-span-1 h-auto flex flex-col">

@@ -1,6 +1,6 @@
 ---
 import Container from "../shared/Container.astro";
-import Decor from "../shared/Decor.astro";
+import WaxBand from "../shared/WaxBand.astro";
 import Paragraph from "../shared/Paragraph.astro";
 import Title from "../shared/Title.astro";
 import { services } from "../../utils/data";
@@ -11,10 +11,9 @@ const field =
 const label = "block text-sm font-semibold text-heading-2";
 ---
 
-<section id="contact" aria-labelledby="contact-titre" class="pb-20">
-    <Container>
-        <div class="w-full relative py-10 md:py-14 px-5 sm:px-8 md:px-12 rounded-3xl bg-linear-to-tr from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 overflow-hidden">
-            <Decor />
+<section id="contact" aria-labelledby="contact-titre" class="relative bg-linear-to-tr from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950">
+    <WaxBand className="absolute inset-x-0 top-0" />
+    <Container className="pt-20 pb-20 md:pt-24 md:pb-28">
             <div class="relative grid lg:grid-cols-5 gap-10 lg:gap-14">
                 <div class="lg:col-span-2">
                     <Title id="contact-titre" className="sm:text-4xl/tight md:text-5xl/tight font-bold">
@@ -106,7 +105,6 @@ const label = "block text-sm font-semibold text-heading-2";
                     </div>
                 </form>
             </div>
-        </div>
     </Container>
 </section>
 

@@ -34,3 +34,14 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 }
+
+/* Habillage du texte : évite les mots seuls en fin de paragraphe
+   et équilibre les titres sur plusieurs lignes. */
+@layer base {
+  p, li, dd, dt, label {
+    text-wrap: pretty;
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}

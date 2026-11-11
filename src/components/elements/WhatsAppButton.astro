@@ -15,16 +15,25 @@ import { whatsappLink } from "../../utils/site";
 </a>
 
 <script>
-    // Masque le bouton flottant quand la section Contact est à l'écran :
-    // il y ferait doublon avec les liens WhatsApp et le formulaire.
+    // Masque le bouton flottant quand le haut de page ou la section Contact est
+    // à l'écran : tous deux ont déjà leurs propres liens WhatsApp, et le bouton
+    // y recouvrirait du contenu (numéro d'appel, formulaire).
     const floatBtn = document.querySelector<HTMLAnchorElement>("[data-whatsapp-float]");
-    const contact = document.getElementById("contact");
-    if (floatBtn && contact && "IntersectionObserver" in window) {
-        new IntersectionObserver(([entry]) => {
-            const hide = entry.isIntersecting;
+    const zones = ["accueil", "contact"]
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => el !== null);
+    if (floatBtn && zones.length && "IntersectionObserver" in window) {
+        const visible = new Set<Element>();
+        const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (entry.isIntersecting) visible.add(entry.target);
+                else visible.delete(entry.target);
+            }
+            const hide = visible.size > 0;
             floatBtn.dataset.hidden = String(hide);
             floatBtn.toggleAttribute("inert", hide);
             floatBtn.setAttribute("aria-hidden", String(hide));
-        }, { threshold: 0.15 }).observe(contact);
+        }, { threshold: 0.15 });
+        zones.forEach((z) => observer.observe(z));
     }
 </script>
