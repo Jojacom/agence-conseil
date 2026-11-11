@@ -5,7 +5,7 @@ import Decor from "../shared/Decor.astro";
 import FooterNav from "../shared/FooterNav.astro";
 import svgLogo from '../../images/logo.svg';
 import { services } from "../../utils/data";
-import { site } from "../../utils/site";
+import { site, whatsappLink } from "../../utils/site";
 
 const footerNavigation = [
     { itemText: "Accueil", itemLink: "#accueil" },
@@ -51,7 +51,8 @@ const year = new Date().getFullYear();
                 </a>
                 <address class="mt-4 not-italic md:text-lg text-heading-3 space-y-1">
                     <p><strong>Siège social</strong> : {site.address}, {site.city}</p>
-                    <p><strong>Téléphone</strong> : <a href={`tel:${site.phoneHref}`} class="hover:text-primaryv dark:hover:text-primary">{site.phoneDisplay}</a></p>
+                    <p><strong>Appels</strong> : <a href={`tel:${site.phoneHref}`} class="whitespace-nowrap hover:text-primaryv dark:hover:text-primary">{site.phoneDisplay}</a></p>
+                    <p><strong>WhatsApp</strong> (messages uniquement) : <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" class="whitespace-nowrap hover:text-primaryv dark:hover:text-primary">{site.whatsappDisplay}<span class="sr-only"> (nouvel onglet)</span></a></p>
                     <p><strong>E-mail</strong> : <a href={`mailto:${site.email}`} class="hover:text-primaryv dark:hover:text-primary">{site.email}</a></p>
                     <p class="text-sm pt-2">R.C.C.M. : {site.rccm} · N.I.N.E.A : {site.ninea}</p>
                 </address>
