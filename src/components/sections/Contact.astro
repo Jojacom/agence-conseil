@@ -21,11 +21,11 @@ const label = "block text-sm font-semibold text-heading-2";
                         Parlons de votre projet
                     </Title>
                     <Paragraph className="mt-6">
-                        Décrivez-nous votre besoin en quelques lignes : nous en discutons avec vous et vous proposons un plan d'action adapté. Sur WhatsApp, vous recevez une réponse immédiate.
+                        Décrivez-nous votre besoin en quelques lignes : nous en discutons avec vous et vous proposons un plan d'action adapté. Par e-mail, nous vous répondons dans les heures qui suivent.
                     </Paragraph>
                     <p class="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0F7A41]/10 border border-[#0F7A41]/30 px-4 py-2 text-sm font-semibold text-heading-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-4 h-4 text-[#0F7A41] dark:text-green-400" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
-                        Réponse immédiate sur WhatsApp
+                        Réponse immédiate sur WhatsApp et par téléphone
                     </p>
 
                     <ul class="mt-8 space-y-4 text-heading-2">
@@ -182,8 +182,9 @@ const label = "block text-sm font-semibold text-heading-2";
         success.querySelector("[data-success-title]").textContent =
             via === "email" ? "Votre e-mail est prêt dans votre messagerie." : "Votre message est prêt dans WhatsApp.";
         success.querySelector("[data-success-app]").textContent = via === "email" ? "votre messagerie" : "WhatsApp";
-        // La réponse automatique immédiate n'existe que sur WhatsApp
-        success.querySelector("[data-success-reply]").textContent = via === "email" ? "" : " : vous recevrez une réponse immédiate";
+        // Réponse immédiate sur WhatsApp, dans les heures qui suivent par e-mail
+        success.querySelector("[data-success-reply]").textContent =
+            via === "email" ? " : nous vous répondrons dans les heures qui suivent" : " : vous recevrez une réponse immédiate";
         success.hidden = false;
         success.focus({ preventScroll: true });
         success.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
