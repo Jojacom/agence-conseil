@@ -1,0 +1,47 @@
+---
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import { realisations, type Realisation } from "../../utils/realisations";
+
+export interface Props {
+    /** Limiter à certaines catégories (pages de service) */
+    categories?: Realisation["category"][];
+    title?: string;
+    intro?: string;
+}
+
+const {
+    categories,
+    title = "Nos réalisations",
+    intro = "Logos, supports imprimés, signalétique : quelques projets réalisés pour des entreprises du Sénégal et d'Afrique de l'Ouest.",
+} = Astro.props;
+const items = categories ? realisations.filter((r) => categories.includes(r.category)) : realisations;
+---
+
+{items.length > 0 && (
+    <section id="realisations" aria-labelledby="realisations-titre">
+        <Container>
+            <div class="max-w-2xl">
+                <Title id="realisations-titre">{title}</Title>
+                <Paragraph className="mt-4">{intro}</Paragraph>
+            </div>
+            <ul class="mt-10 columns-1 sm:columns-2 lg:columns-3 gap-6 [&>li]:mb-6">
+                {items.map((r) => (
+                    <li class="break-inside-avoid">
+                        <figure class="rounded-2xl border border-box-border bg-box-bg overflow-hidden">
+                            <a href={r.image} class="block bg-white" target="_blank" rel="noopener">
+                                <img src={r.image} alt={r.alt} width={r.width} height={r.height} loading="lazy" decoding="async" class="w-full h-auto" />
+                                <span class="sr-only"> (agrandir l'image dans un nouvel onglet)</span>
+                            </a>
+                            <figcaption class="px-4 py-3">
+                                <span class="block font-semibold text-heading-1">{r.client}</span>
+                                <span class="block text-sm text-heading-3">{r.title} · {r.category}</span>
+                            </figcaption>
+                        </figure>
+                    </li>
+                ))}
+            </ul>
+        </Container>
+    </section>
+)}

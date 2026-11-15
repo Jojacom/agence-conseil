@@ -6,6 +6,8 @@ import Paragraph from "../../components/shared/Paragraph.astro";
 import Title from "../../components/shared/Title.astro";
 import WaxBand from "../../components/shared/WaxBand.astro";
 import Contact from "../../components/sections/Contact.astro";
+import Realisations from "../../components/sections/Realisations.astro";
+import type { RealisationCategory } from "../../utils/realisations";
 import { services, steps, type Service } from "../../utils/data";
 import { site, whatsappLink } from "../../utils/site";
 
@@ -20,6 +22,12 @@ interface Props {
 const { service } = Astro.props;
 const pageUrl = `${site.url}/services/${service.slug}/`;
 const others = services.filter((s) => s.slug !== service.slug);
+// Réalisations montrées sur certaines pages de service
+const realisationsBySlug: Record<string, RealisationCategory[]> = {
+    "identite-de-marque": ["Identité visuelle", "Signalétique", "Supports imprimés"],
+    "creation-de-contenu": ["Supports imprimés"],
+};
+const relatedCategories = realisationsBySlug[service.slug];
 const waMessage = `Bonjour JOJACOM, je souhaite en savoir plus sur votre service « ${service.title} ».`;
 
 const jsonLd = [
@@ -128,6 +136,10 @@ const jsonLd = [
                 </ol>
             </Container>
         </section>
+
+        {relatedCategories && (
+            <Realisations categories={relatedCategories} title="Exemples de réalisations" intro="Quelques projets réalisés par JOJACOM pour ses clients." />
+        )}
 
         <section aria-labelledby="faq-titre">
             <Container className="max-w-4xl">
