@@ -4,6 +4,9 @@ import Navbar from "../components/elements/Navbar.astro";
 import WhatsAppButton from "../components/elements/WhatsAppButton.astro";
 import { site } from "../utils/site";
 import { services } from "../utils/data";
+// Police hébergée sur le site (pas d'appel à Google Fonts)
+import "@fontsource-variable/raleway";
+import ralewayLatin from "@fontsource-variable/raleway/files/raleway-latin-wght-normal.woff2?url";
 import "../styles/global.css";
 
 export interface Props {
@@ -63,6 +66,7 @@ const jsonLd = [businessJsonLd, ...pageJsonLd];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={ralewayLatin} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#A6524B" />
 
@@ -80,13 +84,6 @@ const jsonLd = [businessJsonLd, ...pageJsonLd];
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Appliqué avant l'affichage pour éviter le flash clair -> sombre -->
     <script is:inline>
@@ -190,7 +187,7 @@ const jsonLd = [businessJsonLd, ...pageJsonLd];
     scroll-padding-top: 1.5rem;
   }
   body {
-    font-family: "Raleway", sans-serif;
+    font-family: "Raleway Variable", "Raleway", sans-serif;
   }
 
   /* Focus clavier visible partout */
