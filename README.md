@@ -1,6 +1,6 @@
 # Site JOJACOM
 
-Site vitrine de **JOJACOM SARL**, agence de communication digitale à Dakar (Sénégal) : <https://jojacom.online>
+Site vitrine de **JOJACOM SARL**, agence de communication digitale à Dakar (Sénégal) : <https://www.jojacom.online>
 
 ## Outils
 - [Astro](https://astro.build) 7

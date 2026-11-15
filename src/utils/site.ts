@@ -2,7 +2,7 @@
 export const site = {
     name: "JOJACOM",
     legalName: "JOJACOM SARL",
-    url: "https://jojacom.online",
+    url: "https://www.jojacom.online", // adresse réelle : jojacom.online redirige vers www (Vercel)
     email: "contact@jojacom.online",
     phoneDisplay: "+221 75 447 29 75",
     phoneHref: "+221754472975",
