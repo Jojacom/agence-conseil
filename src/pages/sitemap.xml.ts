@@ -9,6 +9,7 @@ export const GET: APIRoute = async () => {
     const paths = [
         "/",
         "/agence-digitale-dakar/",
+        "/realisations/",
         ...services.map((s) => `/services/${s.slug}/`),
         "/blog/",
         ...posts.map((p) => `/blog/${p.id}/`),

@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Contact from "../components/sections/Contact.astro";
+import Realisations from "../components/sections/Realisations.astro";
+import { realisations } from "../utils/realisations";
+import { site } from "../utils/site";
+
+const pageUrl = `${site.url}/realisations/`;
+const jsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: `${site.url}/` },
+            { "@type": "ListItem", position: 2, name: "Réalisations", item: pageUrl },
+        ],
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: "Réalisations de JOJACOM",
+        url: pageUrl,
+        about: { "@id": `${site.url}/#entreprise` },
+        hasPart: realisations.map((r) => ({
+            "@type": "CreativeWork",
+            name: `${r.client} – ${r.title}`,
+            image: `${site.url}${r.image}`,
+            creator: { "@id": `${site.url}/#entreprise` },
+        })),
+    },
+];
+---
+
+<Layout
+    title="Réalisations : logos, supports et signalétique | JOJACOM"
+    description="Logos, cartes de visite, flyers, kakémonos et signalétique créés par JOJACOM, agence de communication digitale à Dakar, pour des entreprises du Sénégal."
+    jsonLd={jsonLd}>
+    <main id="contenu" class="flex flex-col gap-y-20 md:gap-y-28 overflow-hidden">
+        <div class="pt-10 lg:pt-16" data-hide-float>
+            <Realisations
+                as="h1"
+                title="Nos réalisations"
+                intro="Logos, cartes de visite, flyers, kakémonos et signalétique : des projets menés pour des entreprises du Sénégal et d'Afrique de l'Ouest." />
+        </div>
+        <Contact />
+    </main>
+</Layout>

@@ -11,6 +11,10 @@ export interface Props {
     intro?: string;
     /** Nombre maximum de réalisations affichées */
     limit?: number;
+    /** Afficher le lien « Voir toutes nos réalisations » */
+    showAllLink?: boolean;
+    /** Niveau du titre (h1 sur la page dédiée) */
+    as?: "h1" | "h2";
 }
 
 const {
@@ -18,6 +22,8 @@ const {
     title = "Nos réalisations",
     intro = "Logos, supports imprimés, signalétique : quelques projets réalisés pour des entreprises du Sénégal et d'Afrique de l'Ouest.",
     limit,
+    showAllLink = false,
+    as = "h2",
 } = Astro.props;
 const filtered = categories ? realisations.filter((r) => categories.includes(r.category)) : realisations;
 const items = limit ? filtered.slice(0, limit) : filtered;
@@ -27,7 +33,7 @@ const items = limit ? filtered.slice(0, limit) : filtered;
     <section id="realisations" aria-labelledby="realisations-titre">
         <Container>
             <div class="max-w-2xl">
-                <Title id="realisations-titre">{title}</Title>
+                <Title id="realisations-titre" as={as} className={as === "h1" ? "text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold" : ""}>{title}</Title>
                 <Paragraph className="mt-4">{intro}</Paragraph>
             </div>
             <ul class="mt-10 columns-1 sm:columns-2 lg:columns-3 gap-6 [&>li]:mb-6">
@@ -46,6 +52,9 @@ const items = limit ? filtered.slice(0, limit) : filtered;
                     </li>
                 ))}
             </ul>
+            {showAllLink && filtered.length > items.length && (
+                <a href="/realisations/" class="inline-block mt-2 font-semibold text-primaryv dark:text-primary underline-offset-4 hover:underline">Voir toutes nos réalisations ({filtered.length}) →</a>
+            )}
         </Container>
     </section>
 )}
