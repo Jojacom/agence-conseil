@@ -1,0 +1,26 @@
+---
+import Container from "../shared/Container.astro";
+import Paragraph from "../shared/Paragraph.astro";
+import Title from "../shared/Title.astro";
+import PostCard from "../cards/PostCard.astro";
+import { getPublishedPosts } from "../../utils/blog";
+
+const posts = (await getPublishedPosts()).slice(0, 2);
+---
+
+{posts.length > 0 && (
+    <section aria-labelledby="conseils-titre">
+        <Container>
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div class="max-w-2xl">
+                    <Title id="conseils-titre">Nos derniers conseils</Title>
+                    <Paragraph className="mt-4">Des guides pratiques pour développer votre entreprise en ligne au Sénégal.</Paragraph>
+                </div>
+                <a href="/blog/" class="font-semibold text-primaryv dark:text-primary underline-offset-4 hover:underline">Tous les articles →</a>
+            </div>
+            <ul class="mt-10 grid md:grid-cols-2 gap-x-12 gap-y-10">
+                {posts.map((post) => <PostCard post={post} headingLevel="h3" />)}
+            </ul>
+        </Container>
+    </section>
+)}

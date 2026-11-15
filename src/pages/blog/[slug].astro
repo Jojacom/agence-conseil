@@ -1,0 +1,106 @@
+---
+import { render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BtnLink from "../../components/shared/BtnLink.astro";
+import Container from "../../components/shared/Container.astro";
+import PostCard from "../../components/cards/PostCard.astro";
+import Contact from "../../components/sections/Contact.astro";
+import { formatDate, getPublishedPosts, readingTime, type Post } from "../../utils/blog";
+import { services } from "../../utils/data";
+import { site, whatsappLink } from "../../utils/site";
+
+export async function getStaticPaths() {
+    const posts = await getPublishedPosts();
+    return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+interface Props {
+    post: Post;
+    posts: Post[];
+}
+
+const { post, posts } = Astro.props;
+const { Content } = await render(post);
+const url = `${site.url}/blog/${post.id}/`;
+const service = services.find((s) => s.slug === post.data.relatedService);
+const others = posts.filter((p) => p.id !== post.id).slice(0, 2);
+const minutes = readingTime(post.body);
+
+const jsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.data.title,
+        description: post.data.description,
+        datePublished: post.data.date.toISOString(),
+        dateModified: (post.data.updated ?? post.data.date).toISOString(),
+        mainEntityOfPage: url,
+        inLanguage: "fr",
+        image: `${site.url}/images/image1.webp`,
+        author: { "@id": `${site.url}/#entreprise` },
+        publisher: { "@id": `${site.url}/#entreprise` },
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: `${site.url}/` },
+            { "@type": "ListItem", position: 2, name: "Blog", item: `${site.url}/blog/` },
+            { "@type": "ListItem", position: 3, name: post.data.title, item: url },
+        ],
+    },
+];
+---
+
+<Layout title={`${post.data.seoTitle} | JOJACOM`} description={post.data.description} jsonLd={jsonLd}>
+    <main id="contenu" class="flex flex-col gap-y-20 md:gap-y-28 overflow-hidden">
+        <article class="pt-10 lg:pt-16" aria-labelledby="article-titre">
+            <Container className="max-w-2xl">
+                <nav aria-label="Fil d'Ariane" class="text-sm text-heading-3" data-hide-float>
+                    <ol class="flex flex-wrap items-center gap-2">
+                        <li><a href="/" class="hover:text-primaryv dark:hover:text-primary underline-offset-4 hover:underline">Accueil</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li><a href="/blog/" class="hover:text-primaryv dark:hover:text-primary underline-offset-4 hover:underline">Blog</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li aria-current="page" class="font-semibold text-heading-2">{post.data.category}</li>
+                    </ol>
+                </nav>
+                <header class="mt-8">
+                    <h1 id="article-titre" class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold text-heading-1">{post.data.title}</h1>
+                    <p class="mt-5 text-heading-3">
+                        Par l'équipe JOJACOM · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time> · {minutes} min de lecture
+                    </p>
+                </header>
+                <div class="mt-10 prose prose-lg prose-jojacom max-w-none prose-headings:font-semibold prose-h2:mt-12 prose-a:underline-offset-4">
+                    <Content />
+                </div>
+
+                <aside class="mt-14 rounded-3xl border-2 border-primaryv/30 bg-primary/10 p-6 sm:p-8" aria-labelledby="cta-article">
+                    <h2 id="cta-article" class="text-xl md:text-2xl font-semibold text-heading-1">Un projet ? Parlons-en.</h2>
+                    <p class="mt-3 md:text-lg text-heading-2">
+                        {service ? `Découvrez notre service « ${service.title} » ou écrivez-nous directement.` : "Écrivez-nous directement : réponse immédiate sur WhatsApp."}
+                    </p>
+                    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                        <BtnLink href={whatsappLink(`Bonjour JOJACOM, j'ai lu votre article « ${post.data.title} » et j'aimerais en discuter.`)} target="_blank" variant="whatsapp" text="Écrire sur WhatsApp">
+                            <span class="sr-only"> (nouvel onglet)</span>
+                        </BtnLink>
+                        {service && <BtnLink href={`/services/${service.slug}/`} variant="secondary" text={service.title} />}
+                    </div>
+                </aside>
+            </Container>
+        </article>
+
+        {others.length > 0 && (
+            <section aria-labelledby="autres-articles">
+                <Container className="max-w-5xl">
+                    <h2 id="autres-articles" class="text-2xl sm:text-3xl font-semibold text-heading-1">À lire aussi</h2>
+                    <ul class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        {others.map((p) => <PostCard post={p} headingLevel="h3" />)}
+                    </ul>
+                </Container>
+            </section>
+        )}
+
+        <Contact />
+    </main>
+</Layout>

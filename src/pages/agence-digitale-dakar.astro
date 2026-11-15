@@ -1,0 +1,189 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BtnLink from "../components/shared/BtnLink.astro";
+import Container from "../components/shared/Container.astro";
+import Paragraph from "../components/shared/Paragraph.astro";
+import Title from "../components/shared/Title.astro";
+import WaxBand from "../components/shared/WaxBand.astro";
+import Contact from "../components/sections/Contact.astro";
+import Realisations from "../components/sections/Realisations.astro";
+import { services, steps } from "../utils/data";
+import { site, whatsappLink } from "../utils/site";
+
+const pageUrl = `${site.url}/agence-digitale-dakar/`;
+
+const reasons = [
+    {
+        title: "Nous connaissons votre marché",
+        text: "Habitudes d'achat, réseaux sociaux utilisés, place de WhatsApp, moyens de paiement comme Wave ou Orange Money : nous travaillons avec les réalités du Sénégal.",
+    },
+    {
+        title: "Un seul interlocuteur pour tout",
+        text: "Site web, réseaux sociaux, publicité, contenus et identité visuelle : vos actions restent cohérentes, sans multiplier les prestataires.",
+    },
+    {
+        title: "Nous sommes joignables",
+        text: "Nos bureaux sont à la Cité Sipres II, à Dakar. Réponse immédiate sur WhatsApp et par téléphone, et rendez-vous possibles à l'agence.",
+    },
+    {
+        title: "Des résultats mesurés",
+        text: "Nous fixons des objectifs concrets avec vous (messages, appels, demandes de devis) et vous rendons des comptes régulièrement.",
+    },
+];
+
+const faq = [
+    {
+        q: "Qu'est-ce qu'une agence digitale ?",
+        a: "Une agence digitale aide les entreprises à se développer sur internet : création de site web, gestion des réseaux sociaux, publicité en ligne, création de contenus et référencement sur Google.",
+    },
+    {
+        q: "Où se trouve JOJACOM ?",
+        a: `Nos bureaux sont situés ${site.address}, ${site.city} ${site.postalCode}. Nous sommes ouverts du lundi au samedi ; les horaires détaillés figurent en bas de page.`,
+    },
+    {
+        q: "Avec quel type d'entreprises travaillez-vous ?",
+        a: "Commerces, restaurants, PME, prestataires de services, organismes de formation, institutions : toute structure qui veut gagner en visibilité et en clients grâce au digital.",
+    },
+    {
+        q: "Combien coûte l'accompagnement d'une agence digitale ?",
+        a: "Le prix dépend des services choisis et de l'ampleur du projet. Après un premier échange sur vos besoins, nous vous proposons une offre adaptée à votre budget.",
+    },
+    {
+        q: "Comment démarrer avec JOJACOM ?",
+        a: "Écrivez-nous sur WhatsApp, appelez-nous ou remplissez le formulaire de contact. Nous échangeons sur votre activité et vos objectifs, puis nous vous proposons un plan d'action.",
+    },
+];
+
+const jsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: `${site.url}/` },
+            { "@type": "ListItem", position: 2, name: "Agence digitale à Dakar", item: pageUrl },
+        ],
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+    },
+];
+---
+
+<Layout
+    title="Agence digitale à Dakar – Marketing et web | JOJACOM"
+    description="JOJACOM, agence digitale à Dakar (Cité Sipres II) : sites web, réseaux sociaux, publicité en ligne, contenus et SEO pour les entreprises sénégalaises."
+    jsonLd={jsonLd}>
+    <main id="contenu" class="flex flex-col gap-y-20 md:gap-y-28 overflow-hidden">
+        <section class="pt-10 lg:pt-16" aria-labelledby="page-titre" data-hide-float>
+            <Container className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                <div class="lg:col-span-7">
+                    <nav aria-label="Fil d'Ariane" class="text-sm text-heading-3">
+                        <ol class="flex flex-wrap items-center gap-2">
+                            <li><a href="/" class="hover:text-primaryv dark:hover:text-primary underline-offset-4 hover:underline">Accueil</a></li>
+                            <li aria-hidden="true">/</li>
+                            <li aria-current="page" class="font-semibold text-heading-2">Agence digitale à Dakar</li>
+                        </ol>
+                    </nav>
+                    <h1 id="page-titre" class="mt-8 text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold text-heading-1">
+                        Votre agence digitale à Dakar
+                    </h1>
+                    <Paragraph className="mt-8 max-w-xl">
+                        JOJACOM accompagne les entreprises sénégalaises qui veulent attirer plus de clients grâce au digital :
+                        site web, réseaux sociaux, publicité en ligne, contenus, référencement et identité visuelle.
+                    </Paragraph>
+                    <Paragraph className="mt-4 max-w-xl">
+                        Installés à la Cité Sipres II, nous travaillons au plus près de nos clients, avec des méthodes adaptées au marché local.
+                    </Paragraph>
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                        <BtnLink href={whatsappLink("Bonjour JOJACOM, je cherche une agence digitale à Dakar pour mon entreprise.")} target="_blank" variant="whatsapp" text="Discuter sur WhatsApp">
+                            <span class="sr-only"> (nouvel onglet)</span>
+                        </BtnLink>
+                        <BtnLink href={`tel:${site.phoneHref}`} variant="secondary" text={`Appeler le ${site.phoneDisplay}`} />
+                    </div>
+                    <p class="mt-4 text-sm text-heading-3">Réponse immédiate sur WhatsApp et par téléphone.</p>
+                </div>
+                <div class="hidden lg:block lg:col-span-5 lg:pt-14">
+                    <img src="/images/image1.webp" alt="" width="771" height="774" fetchpriority="high" class="w-full rounded-3xl object-cover aspect-square" />
+                </div>
+            </Container>
+        </section>
+
+        <WaxBand />
+
+        <section aria-labelledby="pourquoi-titre">
+            <Container>
+                <Title id="pourquoi-titre">Pourquoi choisir une agence basée à Dakar ?</Title>
+                <ul class="mt-10 grid sm:grid-cols-2 gap-x-12 gap-y-8">
+                    {reasons.map((r) => (
+                        <li class="border-t-2 border-primaryv dark:border-primary pt-5">
+                            <h3 class="text-lg md:text-xl font-semibold text-heading-1">{r.title}</h3>
+                            <p class="mt-2 md:text-lg text-heading-3 max-w-prose">{r.text}</p>
+                        </li>
+                    ))}
+                </ul>
+            </Container>
+        </section>
+
+        <section aria-labelledby="services-titre">
+            <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+                <div class="lg:col-span-4">
+                    <Title id="services-titre">Nos services</Title>
+                    <Paragraph className="mt-4">Chaque service a sa page détaillée : cliquez pour en savoir plus.</Paragraph>
+                </div>
+                <ul class="lg:col-span-8 grid sm:grid-cols-2 gap-x-10 gap-y-6">
+                    {services.map((s) => (
+                        <li class="relative border-t border-box-border pt-5 group">
+                            <h3 class="flex items-center gap-3 text-lg font-semibold text-heading-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex-none text-primaryv dark:text-primary" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={s.icon} /></svg>
+                                <a href={`/services/${s.slug}/`} class="after:absolute after:inset-0 group-hover:text-primaryv dark:group-hover:text-primary">{s.title}</a>
+                            </h3>
+                            <p class="mt-2 text-heading-3">{s.description}</p>
+                        </li>
+                    ))}
+                </ul>
+            </Container>
+        </section>
+
+        <section aria-labelledby="methode-titre">
+            <Container>
+                <Title id="methode-titre">Comment nous travaillons</Title>
+                <ol class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {steps.map((step, i) => (
+                        <li class="border-t-2 border-primaryv dark:border-primary pt-5">
+                            <h3 class="text-lg font-semibold text-heading-1"><span class="sr-only">Étape {i + 1} : </span>{step.title}</h3>
+                            <p class="mt-2 text-heading-3">{step.description}</p>
+                        </li>
+                    ))}
+                </ol>
+            </Container>
+        </section>
+
+        <Realisations limit={6} title="Quelques réalisations" intro="Des projets menés pour des entreprises du Sénégal et d'Afrique de l'Ouest." />
+        <div class="-mt-14 md:-mt-20">
+            <Container>
+                <a href="/#realisations" class="font-semibold text-primaryv dark:text-primary underline-offset-4 hover:underline">Voir toutes nos réalisations →</a>
+            </Container>
+        </div>
+
+        <section aria-labelledby="faq-titre">
+            <Container className="max-w-4xl">
+                <Title id="faq-titre">Questions fréquentes</Title>
+                <div class="mt-8 divide-y divide-box-border border-y border-box-border">
+                    {faq.map((f) => (
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-heading-1 [&::-webkit-details-marker]:hidden">
+                                <h3>{f.q}</h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 flex-none transition-transform group-open:rotate-180" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
+                            </summary>
+                            <p class="mt-3 md:text-lg text-heading-3 max-w-2xl">{f.a}</p>
+                        </details>
+                    ))}
+                </div>
+            </Container>
+        </section>
+
+        <Contact />
+    </main>
+</Layout>

@@ -9,14 +9,18 @@ export interface Props {
     categories?: Realisation["category"][];
     title?: string;
     intro?: string;
+    /** Nombre maximum de réalisations affichées */
+    limit?: number;
 }
 
 const {
     categories,
     title = "Nos réalisations",
     intro = "Logos, supports imprimés, signalétique : quelques projets réalisés pour des entreprises du Sénégal et d'Afrique de l'Ouest.",
+    limit,
 } = Astro.props;
-const items = categories ? realisations.filter((r) => categories.includes(r.category)) : realisations;
+const filtered = categories ? realisations.filter((r) => categories.includes(r.category)) : realisations;
+const items = limit ? filtered.slice(0, limit) : filtered;
 ---
 
 {items.length > 0 && (

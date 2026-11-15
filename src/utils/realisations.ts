@@ -18,7 +18,7 @@ export interface Realisation {
 export const realisations: Realisation[] = [
     {
         client: "African West Technology",
-        title: "Flyer « Bornes interactives »",
+        title: "Flyer « Bornes interactives »",
         category: "Supports imprimés",
         image: "/realisations/flyer-bornes-interactives-african-west-technology.webp",
         width: 999, height: 1400,
@@ -30,7 +30,7 @@ export const realisations: Realisation[] = [
         category: "Supports imprimés",
         image: "/realisations/cartes-de-visite-lonase-dorure.webp",
         width: 918, height: 1152,
-        alt: "Cartes de visite de la Loterie Nationale Sénégalaise : recto vert avec logo en dorure, verso crème pour le Directeur général, coordonnées masquées",
+        alt: "Cartes de visite de la Loterie Nationale Sénégalaise : recto vert avec logo en dorure, verso crème pour le Directeur général, coordonnées masquées",
     },
     {
         client: "Legui",
@@ -38,7 +38,7 @@ export const realisations: Realisation[] = [
         category: "Identité visuelle",
         image: "/realisations/logo-legui.webp",
         width: 933, height: 1400,
-        alt: "Logo Legui : une lettre G verte formant une horloge, avec des traits jaunes évoquant la vitesse",
+        alt: "Logo Legui : une lettre G verte formant une horloge, avec des traits jaunes évoquant la vitesse",
     },
     {
         client: "Katour 224",
@@ -54,11 +54,11 @@ export const realisations: Realisation[] = [
         category: "Identité visuelle",
         image: "/realisations/logo-labyrinthe-imprimerie-numerique.webp",
         width: 1264, height: 843,
-        alt: "Logo Labyrinthe Imprimerie Numérique : un labyrinthe circulaire noir avec un point vert au centre",
+        alt: "Logo Labyrinthe Imprimerie Numérique : un labyrinthe circulaire noir avec un point vert au centre",
     },
     {
         client: "African West Technology",
-        title: "Kakémono « Fluidifiez votre accueil »",
+        title: "Kakémono « Fluidifiez votre accueil »",
         category: "Supports imprimés",
         image: "/realisations/kakemono-african-west-technology.webp",
         width: 595, height: 1400,
@@ -70,7 +70,7 @@ export const realisations: Realisation[] = [
         category: "Identité visuelle",
         image: "/realisations/logo-saint-louisienne-traiteur.webp",
         width: 1170, height: 557,
-        alt: "Logo Saint-Louisienne Traiteur : le pont Faidherbe stylisé en bleu, avec une cuillère et une fourchette croisées",
+        alt: "Logo Saint-Louisienne Traiteur : le pont Faidherbe stylisé en bleu, avec une cuillère et une fourchette croisées",
     },
     {
         client: "AFEE-BI Consulting",
@@ -94,7 +94,7 @@ export const realisations: Realisation[] = [
         category: "Signalétique",
         image: "/realisations/enseigne-logo-african-west-technology.webp",
         width: 788, height: 1400,
-        alt: "Enseigne découpée African West Technology : une spirale orange autour du continent africain et le mot Technology sur fond rouge",
+        alt: "Enseigne découpée African West Technology : une spirale orange autour du continent africain et le mot Technology sur fond rouge",
     },
     {
         client: "LONASE",
@@ -110,6 +110,6 @@ export const realisations: Realisation[] = [
         category: "Identité visuelle",
         image: "/realisations/logo-la-scene-verte.webp",
         width: 291, height: 291,
-        alt: "Logo La Scène Verte : un cercle de vagues et de notes de musique vert clair sur fond vert",
+        alt: "Logo La Scène Verte : un cercle de vagues et de notes de musique vert clair sur fond vert",
     },
 ];

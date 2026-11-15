@@ -4,7 +4,9 @@ export interface Props{
 }
 
 const { className = "" } = Astro.props
+// Une largeur maximale passée dans className (ex. « max-w-3xl ») remplace celle par défaut.
+const maxWidth = /(^|\s)max-w-/.test(className) ? "" : "max-w-7xl"
 ---
-<div class={`mx-auto max-w-7xl w-full px-5 sm:px-8 md:px-14 lg:px-5 ${className}`}>
+<div class={`mx-auto ${maxWidth} w-full px-5 sm:px-8 md:px-14 lg:px-5 ${className}`}>
     <slot/>
 </div>
