@@ -16,7 +16,7 @@ export interface Props {
 const {
     categories,
     title = "Nos réalisations",
-    intro = "Logos, supports imprimés, signalétique : quelques projets réalisés pour des entreprises du Sénégal et d'Afrique de l'Ouest.",
+    intro = "Logos, supports imprimés, signalétique : quelques projets réalisés pour des entreprises du Sénégal et d'Afrique de l'Ouest.",
     limit,
 } = Astro.props;
 const filtered = categories ? realisations.filter((r) => categories.includes(r.category)) : realisations;
