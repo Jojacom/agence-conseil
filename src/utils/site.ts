@@ -2,15 +2,25 @@
 export const site = {
     name: "JOJACOM",
     legalName: "JOJACOM SARL",
-    url: "https://jojacom.online",
+    url: "https://www.jojacom.online", // adresse réelle : jojacom.online redirige vers www (Vercel)
     email: "contact@jojacom.online",
     phoneDisplay: "+221 75 447 29 75",
     phoneHref: "+221754472975",
     whatsapp: "221771753636",
     whatsappDisplay: "+221 77 175 36 36",
-    address: "SIPRES 2, Villa N° 168",
+    // Adresse identique à la fiche Google (Google Business Profile)
+    address: "Villa n°168, Cité Sipres II",
+    district: "Cité Sipres II",
     city: "Dakar",
+    postalCode: "12500",
     country: "SN",
+    // Horaires identiques à la fiche Google. Jours au format schema.org.
+    hours: [
+        { days: "Du lundi au jeudi", dayCodes: ["Monday", "Tuesday", "Wednesday", "Thursday"], slots: [["09:00", "13:00"], ["14:00", "18:00"]] },
+        { days: "Vendredi", dayCodes: ["Friday"], slots: [["09:00", "14:00"], ["15:00", "18:00"]] },
+        { days: "Samedi", dayCodes: ["Saturday"], slots: [["11:00", "16:00"]] },
+    ],
+    closedDays: "Dimanche",
     rccm: "SN.DKR.2023.B.48056",
     ninea: "010762575",
     social: {

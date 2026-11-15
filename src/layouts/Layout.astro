@@ -3,40 +3,67 @@ import Footer from "../components/elements/Footer.astro";
 import Navbar from "../components/elements/Navbar.astro";
 import WhatsAppButton from "../components/elements/WhatsAppButton.astro";
 import { site } from "../utils/site";
+import { services } from "../utils/data";
+// Police hébergée sur le site (pas d'appel à Google Fonts)
+import "@fontsource-variable/raleway";
+import ralewayLatin from "@fontsource-variable/raleway/files/raleway-latin-wght-normal.woff2?url";
 import "../styles/global.css";
 
 export interface Props {
   title: string;
   description?: string;
+  /** Données structurées propres à la page (fil d'Ariane, FAQ…) */
+  jsonLd?: Record<string, unknown>[];
 }
 
-const {
-  title,
-  description = "JOJACOM, agence de communication digitale à Dakar : stratégie, réseaux sociaux, publicité en ligne, création de contenu et SEO pour les entreprises sénégalaises.",
-} = Astro.props;
+const businessDescription =
+  "JOJACOM, agence de communication digitale à Dakar : réseaux sociaux, création de sites web, publicité en ligne, création de contenu et SEO pour les entreprises sénégalaises.";
+
+const { title, description = businessDescription, jsonLd: pageJsonLd = [] } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const ogImage = new URL("/images/image1.webp", site.url).href;
 
-const jsonLd = {
+const businessId = `${site.url}/#entreprise`;
+const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
+  "@id": businessId,
   name: site.legalName,
+  alternateName: site.name,
   url: site.url,
   logo: new URL("/favicon.svg", site.url).href,
   image: ogImage,
   email: site.email,
   telephone: site.phoneHref,
-  description,
+  description: businessDescription,
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address,
     addressLocality: site.city,
+    postalCode: site.postalCode,
     addressCountry: site.country,
   },
-  areaServed: "SN",
+  openingHoursSpecification: site.hours.flatMap((h) =>
+    h.slots.map(([opens, closes]) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: h.dayCodes.map((d) => `https://schema.org/${d}`),
+      opens,
+      closes,
+    })),
+  ),
+  areaServed: { "@type": "Country", name: "Sénégal" },
   sameAs: Object.values(site.social),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services de communication digitale",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: { "@type": "Service", name: s.title, url: `${site.url}/services/${s.slug}/` },
+    })),
+  },
 };
+const jsonLd = [businessJsonLd, ...pageJsonLd];
 ---
 
 <!DOCTYPE html>
@@ -48,6 +75,7 @@ const jsonLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={ralewayLatin} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#A6524B" />
 
@@ -65,13 +93,6 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
 
     <!-- Appliqué avant l'affichage pour éviter le flash clair -> sombre -->
     <script is:inline>
@@ -175,7 +196,7 @@ const jsonLd = {
     scroll-padding-top: 1.5rem;
   }
   body {
-    font-family: "Raleway", sans-serif;
+    font-family: "Raleway Variable", "Raleway", sans-serif;
   }
 
   /* Focus clavier visible partout */
