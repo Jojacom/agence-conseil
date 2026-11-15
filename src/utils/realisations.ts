@@ -25,6 +25,14 @@ export const realisations: Realisation[] = [
         alt: "Flyer A4 d'African West Technology présentant une borne interactive tactile, avec les avantages du produit et un appel à demander une démonstration",
     },
     {
+        client: "LONASE",
+        title: "Cartes de visite de la direction (dorure)",
+        category: "Supports imprimés",
+        image: "/realisations/cartes-de-visite-lonase-dorure.webp",
+        width: 918, height: 1152,
+        alt: "Cartes de visite de la Loterie Nationale Sénégalaise : recto vert avec logo en dorure, verso crème pour le Directeur général, coordonnées masquées",
+    },
+    {
         client: "Legui",
         title: "Création de logo",
         category: "Identité visuelle",
@@ -87,6 +95,14 @@ export const realisations: Realisation[] = [
         image: "/realisations/enseigne-logo-african-west-technology.webp",
         width: 788, height: 1400,
         alt: "Enseigne découpée African West Technology : une spirale orange autour du continent africain et le mot Technology sur fond rouge",
+    },
+    {
+        client: "LONASE",
+        title: "Cartes de visite recto verso",
+        category: "Supports imprimés",
+        image: "/realisations/cartes-de-visite-lonase-option-1.webp",
+        width: 515, height: 575,
+        alt: "Carte de visite recto verso de la LONASE pour le Directeur du marketing et de la communication, vert et or, coordonnées et QR code masqués",
     },
     {
         client: "La Scène Verte",
