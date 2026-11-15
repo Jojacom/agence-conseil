@@ -5,7 +5,7 @@ import Paragraph from "../shared/Paragraph.astro";
 import { site, whatsappLink } from "../../utils/site";
 ---
 
-<section id="accueil" class="relative pt-16 lg:pt-24">
+<section id="accueil" class="relative pt-6 sm:pt-16 lg:pt-24">
     <Container className="flex flex-col lg:flex-row gap-10 lg:gap-12">
 
         <div class="relative flex flex-col items-center text-center lg:text-left lg:py-7 xl:py-8 lg:items-start lg:max-w-none max-w-3xl mx-auto lg:mx-0 lg:flex-1 lg:w-1/2">
@@ -18,12 +18,13 @@ import { site, whatsappLink } from "../../utils/site";
                 JOJACOM, agence de communication digitale à Dakar, accompagne les entreprises sénégalaises pour gagner en visibilité et en ventes.
             </Paragraph>
             <div class="mt-10 w-full flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <BtnLink href="#contact" text="Parlons de votre projet" variant="primary" />
-                <BtnLink href={whatsappLink()} target="_blank" variant="secondary" text="Écrire sur WhatsApp">
+                <BtnLink href={whatsappLink()} target="_blank" variant="whatsapp" text="Écrire sur WhatsApp">
                     <span class="sr-only"> (nouvel onglet)</span>
                 </BtnLink>
+                <BtnLink href="#contact" text="Parlons de votre projet" variant="secondary" />
             </div>
-            <p class="mt-6 text-sm text-heading-3">
+            <p class="mt-4 text-sm font-semibold text-heading-2">Réponse immédiate sur WhatsApp et par téléphone.</p>
+            <p class="mt-2 text-sm text-heading-3">
                 Basés à {site.district}, {site.city} · Appels : <a href={`tel:${site.phoneHref}`} class="whitespace-nowrap font-semibold underline-offset-4 hover:underline">{site.phoneDisplay}</a>
             </p>
         </div>
