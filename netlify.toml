@@ -1,0 +1,11 @@
+# Le site officiel est https://jojacom.online (hébergé sur Vercel).
+# Les anciens sites Netlify (dont jojacom.sn) servaient une copie identique,
+# ce qui crée du contenu dupliqué pour Google. Toute requête servie par
+# Netlify est donc redirigée définitivement (301) vers jojacom.online.
+# Vercel ignore ce fichier.
+
+[[redirects]]
+  from = "/*"
+  to = "https://jojacom.online/:splat"
+  status = 301
+  force = true

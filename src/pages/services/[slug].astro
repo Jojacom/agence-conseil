@@ -1,0 +1,169 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BtnLink from "../../components/shared/BtnLink.astro";
+import Container from "../../components/shared/Container.astro";
+import Paragraph from "../../components/shared/Paragraph.astro";
+import Title from "../../components/shared/Title.astro";
+import WaxBand from "../../components/shared/WaxBand.astro";
+import Contact from "../../components/sections/Contact.astro";
+import { services, steps, type Service } from "../../utils/data";
+import { site, whatsappLink } from "../../utils/site";
+
+export function getStaticPaths() {
+    return services.map((service) => ({ params: { slug: service.slug }, props: { service } }));
+}
+
+interface Props {
+    service: Service;
+}
+
+const { service } = Astro.props;
+const pageUrl = `${site.url}/services/${service.slug}/`;
+const others = services.filter((s) => s.slug !== service.slug);
+const waMessage = `Bonjour JOJACOM, je souhaite en savoir plus sur votre service « ${service.title} ».`;
+
+const jsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: service.title,
+        serviceType: service.title,
+        description: service.metaDescription,
+        url: pageUrl,
+        provider: { "@id": `${site.url}/#entreprise` },
+        areaServed: { "@type": "Country", name: "Sénégal" },
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: `${site.url}/` },
+            { "@type": "ListItem", position: 2, name: "Services", item: `${site.url}/#services` },
+            { "@type": "ListItem", position: 3, name: service.title, item: pageUrl },
+        ],
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+    },
+];
+---
+
+<Layout title={service.seoTitle} description={service.metaDescription} jsonLd={jsonLd}>
+    <main id="contenu" class="flex flex-col gap-y-20 md:gap-y-28 overflow-hidden">
+        <section class="pt-10 lg:pt-16" aria-labelledby="service-titre" data-hide-float>
+            <Container className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+                <div class="lg:col-span-7">
+                <nav aria-label="Fil d'Ariane" class="text-sm text-heading-3">
+                    <ol class="flex flex-wrap items-center gap-2">
+                        <li><a href="/" class="hover:text-primaryv dark:hover:text-primary underline-offset-4 hover:underline">Accueil</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li><a href="/#services" class="hover:text-primaryv dark:hover:text-primary underline-offset-4 hover:underline">Services</a></li>
+                        <li aria-hidden="true">/</li>
+                        <li aria-current="page" class="font-semibold text-heading-2">{service.title}</li>
+                    </ol>
+                </nav>
+                <div class="mt-8">
+                    <h1 id="service-titre" class="text-3xl/tight sm:text-4xl/tight md:text-5xl/tight font-bold text-heading-1">
+                        {service.h1}
+                    </h1>
+                    {service.intro.map((p, i) => (
+                        <Paragraph className={`${i === 0 ? "mt-8" : "mt-4"} max-w-xl`}>{p}</Paragraph>
+                    ))}
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+                        <BtnLink href={whatsappLink(waMessage)} target="_blank" variant="whatsapp" text="Discuter sur WhatsApp">
+                            <span class="sr-only"> (nouvel onglet)</span>
+                        </BtnLink>
+                        <BtnLink href={`tel:${site.phoneHref}`} variant="secondary" text={`Appeler le ${site.phoneDisplay}`} />
+                    </div>
+                    <p class="mt-4 text-sm text-heading-3">Réponse immédiate sur WhatsApp et par téléphone.</p>
+                </div>
+                </div>
+                <div class="hidden lg:block lg:col-span-5 lg:pt-14">
+                    <img src="/images/image1.webp" alt="" width="771" height="774" fetchpriority="high" class="w-full rounded-3xl object-cover aspect-square" />
+                </div>
+            </Container>
+        </section>
+
+        <WaxBand />
+
+        <section aria-labelledby="inclus-titre">
+            <Container className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+                <div class="lg:col-span-5">
+                    <Title id="inclus-titre">Ce que comprend le service</Title>
+                    <Paragraph className="mt-4">
+                        Chaque accompagnement est adapté à votre entreprise, à vos objectifs et à votre budget.
+                    </Paragraph>
+                </div>
+                <ul class="lg:col-span-7 space-y-5">
+                    {service.includes.map((item) => (
+                        <li class="flex gap-4 border-t border-box-border pt-5 md:text-lg text-heading-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 flex-none text-primaryv dark:text-primary" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            {item}
+                        </li>
+                    ))}
+                </ul>
+            </Container>
+        </section>
+
+        <section aria-labelledby="methode-titre">
+            <Container>
+                <Title id="methode-titre">Comment nous travaillons</Title>
+                <ol class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {steps.map((step, i) => (
+                        <li class="border-t-2 border-primaryv dark:border-primary pt-5">
+                            <h3 class="text-lg font-semibold text-heading-1">
+                                <span class="sr-only">Étape {i + 1} : </span>{step.title}
+                            </h3>
+                            <p class="mt-2 text-heading-3">{step.description}</p>
+                        </li>
+                    ))}
+                </ol>
+            </Container>
+        </section>
+
+        <section aria-labelledby="faq-titre">
+            <Container className="max-w-4xl">
+                <Title id="faq-titre">Questions fréquentes</Title>
+                <div class="mt-8 divide-y divide-box-border border-y border-box-border">
+                    {service.faq.map((f) => (
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold text-heading-1 [&::-webkit-details-marker]:hidden">
+                                <h3>{f.q}</h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 flex-none transition-transform group-open:rotate-180" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </summary>
+                            <p class="mt-3 md:text-lg text-heading-3 max-w-2xl">{f.a}</p>
+                        </details>
+                    ))}
+                </div>
+            </Container>
+        </section>
+
+        <section aria-labelledby="autres-titre">
+            <Container>
+                <Title id="autres-titre">Nos autres services</Title>
+                <ul class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-4">
+                    {others.map((s) => (
+                        <li>
+                            <a href={`/services/${s.slug}/`} class="inline-flex items-center gap-3 py-2 md:text-lg font-semibold text-heading-1 hover:text-primaryv dark:hover:text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex-none text-primaryv dark:text-primary" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d={s.icon} /></svg>
+                                {s.title}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </Container>
+        </section>
+
+        <Contact />
+    </main>
+</Layout>
