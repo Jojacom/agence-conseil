@@ -14,6 +14,7 @@ const blog = defineCollection({
         category: z.string(),
         relatedService: z.string().optional(), // slug d'un service (lien en fin d'article)
         draft: z.boolean().default(false),  // true = non publié
+        order: z.number().optional(),       // départage les articles du même jour (1 = en premier)
     }),
 });
 
