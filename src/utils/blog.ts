@@ -5,7 +5,7 @@ export type Post = CollectionEntry<"blog">;
 /** Articles publiés (hors brouillons), du plus récent au plus ancien. */
 export async function getPublishedPosts(): Promise<Post[]> {
     const posts = await getCollection("blog", ({ data }) => !data.draft);
-    return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+    return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || (a.data.order ?? 99) - (b.data.order ?? 99));
 }
 
 export const formatDate = (d: Date) =>
