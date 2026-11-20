@@ -3,7 +3,7 @@
 // (noms, téléphones, e-mails de particuliers) ni marques de tiers non autorisées.
 // Images : public/realisations/, format WebP, 1400 px maximum.
 
-export type RealisationCategory = "Identité visuelle" | "Supports imprimés" | "Signalétique";
+export type RealisationCategory = "Identité visuelle" | "Supports imprimés" | "Signalétique" | "Packaging";
 
 export interface Realisation {
     client: string;
@@ -16,6 +16,30 @@ export interface Realisation {
 }
 
 export const realisations: Realisation[] = [
+    {
+        client: "Caisse de Sécurité Sociale",
+        title: "Habillage de borne interactive",
+        category: "Signalétique",
+        image: "/realisations/habillage-borne-caisse-securite-sociale.webp",
+        width: 720, height: 1080,
+        alt: "Présentation de l'habillage d'une borne tactile aux couleurs de la Caisse de Sécurité Sociale : vues de face, de côté et arrière, valeurs de l'institution et palette bleu et orange",
+    },
+    {
+        client: "Saint-Louisienne Traiteur",
+        title: "Étiquette de seau « Ngalakh »",
+        category: "Packaging",
+        image: "/realisations/etiquette-ngalakh-saint-louisienne-traiteur.webp",
+        width: 1286, height: 1400,
+        alt: "Seau de ngalakh Saint-Louisienne Traiteur avec son étiquette : pont Faidherbe stylisé, déclinaisons araw et beignet dougoupe, recette traditionnelle sans essence, numéros masqués",
+    },
+    {
+        client: "Hygeia",
+        title: "Gamme d'étiquettes de pots",
+        category: "Packaging",
+        image: "/realisations/etiquettes-pots-hygeia.webp",
+        width: 1400, height: 400,
+        alt: "Quatre pots Hygeia avec leurs étiquettes : baume Dermatose vert, crème Teigne tondante bleue, pommade Anti-parasitaire violette, lettrage doré et mention usage externe",
+    },
     {
         client: "African West Technology",
         title: "Flyer « Bornes interactives »",
