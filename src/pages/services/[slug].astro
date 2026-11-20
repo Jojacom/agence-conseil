@@ -27,7 +27,7 @@ const others = services.filter((s) => s.slug !== service.slug);
 // Réalisations montrées sur certaines pages de service
 const realisationsBySlug: Record<string, RealisationCategory[]> = {
     "identite-de-marque": ["Identité visuelle", "Signalétique", "Supports imprimés", "Packaging"],
-    "creation-de-contenu": ["Supports imprimés"],
+    "creation-de-contenu": ["Visuels digitaux", "Supports imprimés"],
 };
 const relatedCategories = realisationsBySlug[service.slug];
 // Articles du blog liés à ce service (maillage interne)

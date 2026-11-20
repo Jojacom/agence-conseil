@@ -3,7 +3,7 @@
 // (noms, téléphones, e-mails de particuliers) ni marques de tiers non autorisées.
 // Images : public/realisations/, format WebP, 1400 px maximum.
 
-export type RealisationCategory = "Identité visuelle" | "Supports imprimés" | "Signalétique" | "Packaging";
+export type RealisationCategory = "Identité visuelle" | "Supports imprimés" | "Signalétique" | "Packaging" | "Visuels digitaux";
 
 export interface Realisation {
     client: string;
@@ -17,6 +17,14 @@ export interface Realisation {
 
 export const realisations: Realisation[] = [
     {
+        client: "OMS · Dakar 2026",
+        title: "Bannière « Let's Move Dakar 2026 »",
+        category: "Supports imprimés",
+        image: "/realisations/banniere-lets-move-dakar-2026-oms.webp",
+        width: 1134, height: 567,
+        alt: "Bannière jaune et orange « Let's Move Dakar 2026 » de l'Organisation mondiale de la Santé, avec la mascotte lion des Jeux Olympiques de la Jeunesse et des silhouettes d'athlètes",
+    },
+    {
         client: "Caisse de Sécurité Sociale",
         title: "Habillage de borne interactive",
         category: "Signalétique",
@@ -25,12 +33,28 @@ export const realisations: Realisation[] = [
         alt: "Présentation de l'habillage d'une borne tactile aux couleurs de la Caisse de Sécurité Sociale : vues de face, de côté et arrière, valeurs de l'institution et palette bleu et orange",
     },
     {
+        client: "OMS · Dakar 2026",
+        title: "Visuels du parcours en 5 étapes",
+        category: "Visuels digitaux",
+        image: "/realisations/visuels-parcours-dakar-2026-oms.webp",
+        width: 1400, height: 939,
+        alt: "Cinq visuels carrés numérotés aux couleurs vives, Connect, Challenge, Explore, Check et Act, montrant de jeunes athlètes africains pour le Sport & Health Lab de l'OMS à Dakar 2026",
+    },
+    {
         client: "Saint-Louisienne Traiteur",
         title: "Étiquette de seau « Ngalakh »",
         category: "Packaging",
         image: "/realisations/etiquette-ngalakh-saint-louisienne-traiteur.webp",
         width: 1286, height: 1400,
         alt: "Seau de ngalakh Saint-Louisienne Traiteur avec son étiquette : pont Faidherbe stylisé, déclinaisons araw et beignet dougoupe, recette traditionnelle sans essence, numéros masqués",
+    },
+    {
+        client: "OMS · Dakar 2026",
+        title: "Kakémonos du Sport & Health Lab",
+        category: "Supports imprimés",
+        image: "/realisations/kakemonos-sport-health-lab-dakar-2026-oms.webp",
+        width: 1098, height: 1248,
+        alt: "Deux kakémonos Dakar 2026 et OMS : « Let's Move » vert avec la mascotte lion, et « Bienvenue dans le Sport & Health Lab » bleu avec les thèmes santé mentale, hygiène menstruelle, sport et MNT",
     },
     {
         client: "Hygeia",
@@ -135,5 +159,13 @@ export const realisations: Realisation[] = [
         image: "/realisations/logo-la-scene-verte.webp",
         width: 291, height: 291,
         alt: "Logo La Scène Verte : un cercle de vagues et de notes de musique vert clair sur fond vert",
+    },
+    {
+        client: "OMS · Dakar 2026",
+        title: "Cadre photo « Let's Move »",
+        category: "Supports imprimés",
+        image: "/realisations/cadre-photo-lets-move-dakar-2026-oms.webp",
+        width: 709, height: 850,
+        alt: "Cadre photo géant jaune et orange « Let's Move Dakar 2026 » avec la mascotte lion et les thèmes du Sport & Health Lab",
     },
 ];
