@@ -4,6 +4,7 @@ import Navbar from "../components/elements/Navbar.astro";
 import WhatsAppButton from "../components/elements/WhatsAppButton.astro";
 import { site } from "../utils/site";
 import { services } from "../utils/data";
+import { ogKey } from "../utils/og";
 // Police hébergée sur le site (pas d'appel à Google Fonts)
 import "@fontsource-variable/raleway";
 import ralewayLatin from "@fontsource-variable/raleway/files/raleway-latin-wght-normal.woff2?url";
@@ -14,15 +15,18 @@ export interface Props {
   description?: string;
   /** Données structurées propres à la page (fil d'Ariane, FAQ…) */
   jsonLd?: Record<string, unknown>[];
+  /** "article" pour les billets de blog */
+  ogType?: "website" | "article";
 }
 
 const businessDescription =
   "JOJACOM, agence de communication digitale à Dakar : réseaux sociaux, création de sites web, publicité en ligne, création de contenu et SEO pour les entreprises sénégalaises.";
 
-const { title, description = businessDescription, jsonLd: pageJsonLd = [] } = Astro.props;
+const { title, description = businessDescription, jsonLd: pageJsonLd = [], ogType = "website" } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, site.url).href;
-const ogImage = new URL("/images/image1.webp", site.url).href;
+// Image de partage propre à chaque page (générée dans src/pages/og/)
+const ogImage = new URL(`/og/${ogKey(Astro.url.pathname)}.png`, site.url).href;
 
 const businessId = `${site.url}/#entreprise`;
 const businessJsonLd = {
@@ -33,7 +37,7 @@ const businessJsonLd = {
   alternateName: site.name,
   url: site.url,
   logo: new URL("/favicon.svg", site.url).href,
-  image: ogImage,
+  image: new URL("/og/accueil.png", site.url).href,
   email: site.email,
   telephone: site.phoneHref,
   description: businessDescription,
@@ -80,13 +84,16 @@ const jsonLd = [businessJsonLd, ...pageJsonLd];
     <meta name="theme-color" content="#A6524B" />
 
     <!-- Partage réseaux sociaux -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="fr_SN" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

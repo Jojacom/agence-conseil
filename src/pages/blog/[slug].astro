@@ -36,7 +36,7 @@ const jsonLd = [
         dateModified: (post.data.updated ?? post.data.date).toISOString(),
         mainEntityOfPage: url,
         inLanguage: "fr",
-        image: `${site.url}/images/image1.webp`,
+        image: `${site.url}/og/blog/${post.id}.png`,
         author: { "@id": `${site.url}/#entreprise` },
         publisher: { "@id": `${site.url}/#entreprise` },
     },
@@ -52,7 +52,7 @@ const jsonLd = [
 ];
 ---
 
-<Layout title={`${post.data.seoTitle} | JOJACOM`} description={post.data.description} jsonLd={jsonLd}>
+<Layout title={`${post.data.seoTitle} | JOJACOM`} description={post.data.description} jsonLd={jsonLd} ogType="article">
     <main id="contenu" class="flex flex-col gap-y-20 md:gap-y-28 overflow-hidden">
         <article class="pt-10 lg:pt-16" aria-labelledby="article-titre">
             <Container className="max-w-2xl">
