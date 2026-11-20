@@ -31,7 +31,7 @@ export const GET: APIRoute = async () => {
         "",
         `- [Accueil](${site.url}/) : présentation de l'agence, services, méthode et contact`,
         `- [Agence digitale à Dakar](${site.url}/agence-digitale-dakar/) : pourquoi choisir une agence basée à Dakar, questions fréquentes`,
-        `- [Réalisations](${site.url}/realisations/) : exemples de projets (identité visuelle, supports imprimés, signalétique, packaging)`,
+        `- [Réalisations](${site.url}/realisations/) : exemples de projets (identité visuelle, supports imprimés, signalétique, packaging, visuels digitaux)`,
         `- [Blog](${site.url}/blog/) : conseils digitaux pour les entreprises du Sénégal`,
         "",
         "## Articles du blog",
