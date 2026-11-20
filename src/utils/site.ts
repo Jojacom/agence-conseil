@@ -23,6 +23,8 @@ export const site = {
     closedDays: "Dimanche",
     rccm: "SN.DKR.2023.B.48056",
     ninea: "010762575",
+    /** Lien direct pour laisser un avis sur la fiche Google de JOJACOM */
+    googleReview: "https://g.page/r/CZGgM-djeOZDEBM/review",
     social: {
         facebook: "https://www.facebook.com/jojacom",
         instagram: "https://www.instagram.com/jojacom_dig",
