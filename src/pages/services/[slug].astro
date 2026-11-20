@@ -7,6 +7,8 @@ import Title from "../../components/shared/Title.astro";
 import WaxBand from "../../components/shared/WaxBand.astro";
 import Contact from "../../components/sections/Contact.astro";
 import Realisations from "../../components/sections/Realisations.astro";
+import PostCard from "../../components/cards/PostCard.astro";
+import { getPublishedPosts } from "../../utils/blog";
 import type { RealisationCategory } from "../../utils/realisations";
 import { services, steps, type Service } from "../../utils/data";
 import { site, whatsappLink } from "../../utils/site";
@@ -28,6 +30,8 @@ const realisationsBySlug: Record<string, RealisationCategory[]> = {
     "creation-de-contenu": ["Supports imprimés"],
 };
 const relatedCategories = realisationsBySlug[service.slug];
+// Articles du blog liés à ce service (maillage interne)
+const relatedPosts = (await getPublishedPosts()).filter((p) => p.data.relatedService === service.slug).slice(0, 2);
 const waMessage = `Bonjour JOJACOM, je souhaite en savoir plus sur votre service « ${service.title} ».`;
 
 const jsonLd = [
@@ -159,6 +163,17 @@ const jsonLd = [
                 </div>
             </Container>
         </section>
+
+        {relatedPosts.length > 0 && (
+            <section aria-labelledby="articles-titre">
+                <Container className="max-w-5xl">
+                    <Title id="articles-titre">Pour aller plus loin</Title>
+                    <ul class="mt-8 grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        {relatedPosts.map((p) => <PostCard post={p} headingLevel="h3" />)}
+                    </ul>
+                </Container>
+            </section>
+        )}
 
         <section aria-labelledby="autres-titre">
             <Container>

@@ -41,6 +41,8 @@ export const services: Service[] = [
             { q: "Sur quels réseaux sociaux intervenez-vous ?", a: "Principalement Facebook, Instagram, TikTok et LinkedIn. Nous choisissons avec vous les réseaux où se trouve réellement votre clientèle, plutôt que d'être partout." },
             { q: "Est-ce que je garde le contrôle de mes comptes ?", a: "Oui. Vos comptes restent les vôtres : nous y accédons avec un rôle d'administrateur ou d'éditeur, et vous validez la ligne éditoriale." },
             { q: "Combien coûte la gestion des réseaux sociaux ?", a: "Le prix dépend du nombre de réseaux, du rythme de publication et du type de contenus. Après un premier échange, nous vous proposons une offre adaptée à votre budget." },
+            { q: "Faut-il être présent sur tous les réseaux sociaux ?", a: "Non. Il vaut mieux être actif et régulier sur deux réseaux où se trouve votre clientèle que peu présent partout. Nous vous aidons à choisir les bons." },
+            { q: "Répondez-vous aux commentaires et aux messages ?", a: "Oui, l'animation de la communauté fait partie du service : nous répondons aux commentaires et aux messages, et nous vous transmettons les demandes de clients." },
         ],
     },
     {
@@ -66,6 +68,9 @@ export const services: Service[] = [
             { q: "Combien de temps faut-il pour créer un site ?", a: "Cela dépend du nombre de pages et de la disponibilité des contenus (textes, photos, logo). Nous fixons un calendrier précis avec vous dès le départ." },
             { q: "Mon site sera-t-il visible sur Google ?", a: "Oui, chaque site est construit pour être bien compris par Google : structure, titres, vitesse et fiche entreprise. Le référencement se renforce ensuite avec le temps et le contenu." },
             { q: "Combien coûte un site web ?", a: "Le prix dépend du nombre de pages et des fonctionnalités souhaitées. Après un premier échange sur votre projet, nous vous proposons une offre adaptée." },
+            { q: "Mon site sera-t-il adapté aux téléphones ?", a: "Oui. Au Sénégal, la plupart des visiteurs naviguent sur mobile : chaque site est conçu d'abord pour le téléphone, puis adapté aux ordinateurs." },
+            { q: "Mon site peut-il être relié à WhatsApp ?", a: "Oui. Nous ajoutons des boutons pour écrire sur WhatsApp ou vous appeler en un clic, ainsi qu'un formulaire de contact." },
+            { q: "Que se passe-t-il après la mise en ligne ?", a: "Nous vous accompagnons après la livraison : prise en main, modifications et conseils pour faire vivre votre site." },
         ],
     },
     {
@@ -91,6 +96,8 @@ export const services: Service[] = [
             { q: "Quel budget prévoir pour la publicité en ligne ?", a: "Il n'y a pas de minimum universel : le budget dépend de votre objectif et de votre zone. Nous vous conseillons un montant de départ réaliste, puis nous l'ajustons selon les résultats." },
             { q: "Peut-on cibler uniquement Dakar ?", a: "Oui. Les campagnes peuvent viser une ville, un quartier ou un rayon autour de votre boutique." },
             { q: "Comment mesure-t-on les résultats ?", a: "Nous suivons les indicateurs liés à votre objectif : messages WhatsApp, appels, visites du site ou ventes, et nous vous les présentons dans un rapport régulier." },
+            { q: "Faut-il un site web pour faire de la publicité en ligne ?", a: "Pas forcément. Une campagne peut renvoyer vers WhatsApp, vers un appel ou vers votre page Facebook ou Instagram. Un site reste un atout pour rassurer et convaincre." },
+            { q: "Qui crée les annonces ?", a: "Nous nous occupons de tout : visuels, vidéos et textes des annonces, en accord avec vous avant la diffusion." },
         ],
     },
     {
@@ -115,6 +122,8 @@ export const services: Service[] = [
         faq: [
             { q: "Faut-il fournir les photos de mes produits ?", a: "Vos propres photos sont un plus, mais pas une obligation : nous pouvons organiser la création des visuels avec vous." },
             { q: "Les contenus sont-ils adaptés à chaque réseau ?", a: "Oui. Chaque contenu est décliné au bon format et au bon ton pour Facebook, Instagram, TikTok ou LinkedIn." },
+            { q: "Créez-vous des vidéos pour TikTok et les Reels ?", a: "Oui. Les vidéos courtes pour TikTok, les Reels et les Stories font partie de nos créations, au format vertical adapté à chaque plateforme." },
+            { q: "Pouvez-vous rédiger les textes de mon site ?", a: "Oui. Nous rédigeons les textes de vos pages et de vos publications, dans un ton qui correspond à votre marque et à vos clients." },
         ],
     },
     {
@@ -140,6 +149,8 @@ export const services: Service[] = [
             { q: "En combien de temps voit-on des résultats ?", a: "Le référencement est un travail de fond : les premiers effets apparaissent généralement après quelques semaines, et se renforcent sur plusieurs mois." },
             { q: "Pouvez-vous garantir la première place sur Google ?", a: "Non, et personne ne le peut honnêtement : Google décide seul de ses classements. Nous mettons en place les bonnes pratiques et suivons vos positions de près." },
             { q: "Qu'est-ce que le référencement local ?", a: "C'est le fait d'apparaître sur Google Maps et dans les résultats « près de moi ». Pour une entreprise de Dakar, c'est souvent le levier le plus rentable." },
+            { q: "Qu'est-ce qu'une fiche Google Business ?", a: "C'est la fiche gratuite qui présente votre entreprise sur Google et Google Maps : adresse, horaires, téléphone, photos et avis. Bien remplie, elle vous rend visible auprès des clients proches." },
+            { q: "Faut-il publier des articles pour être bien référencé ?", a: "C'est fortement recommandé. Des contenus utiles qui répondent aux questions de vos clients aident Google à comprendre votre activité et attirent de nouvelles visites." },
         ],
     },
     {
@@ -164,6 +175,8 @@ export const services: Service[] = [
         faq: [
             { q: "Pouvez-vous moderniser un logo existant ?", a: "Oui. Nous pouvons faire évoluer votre logo actuel en gardant ce qui fait sa reconnaissance, ou en créer un nouveau." },
             { q: "Dans quels formats recevrai-je mon logo ?", a: "Dans les formats adaptés à l'impression et au web, en couleur et en version simplifiée." },
+            { q: "Que contient une charte graphique ?", a: "Vos couleurs, vos polices, les différentes versions de votre logo et les règles pour les utiliser correctement sur tous vos supports." },
+            { q: "Mon identité sera-t-elle déclinée pour les réseaux sociaux ?", a: "Oui. Nous préparons des modèles pour vos publications afin que votre marque reste reconnaissable sur chaque réseau." },
         ],
     },
     {
@@ -188,6 +201,8 @@ export const services: Service[] = [
         faq: [
             { q: "Pour quelles entreprises ?", a: "Pour toute entreprise qui veut développer sa présence en ligne : commerces, PME, prestataires de services, institutions." },
             { q: "Faut-il déjà être présent en ligne ?", a: "Non. Nous pouvons partir de zéro et construire votre présence étape par étape." },
+            { q: "Combien coûte une stratégie digitale ?", a: "Le prix dépend de la taille de votre entreprise et de l'étendue de l'analyse. Après un premier échange, nous vous proposons une offre adaptée à votre budget." },
+            { q: "Comment mesurez-vous les résultats ?", a: "Nous mettons en place des outils de mesure dès le départ, puis nous suivons les indicateurs liés à vos objectifs : demandes reçues, appels, messages, ventes. Vous recevez des rapports clairs." },
         ],
     },
 ];
